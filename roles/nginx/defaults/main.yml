@@ -1,0 +1,6 @@
+---
+# nginx
+nginx:
+  start: false
+  service_enabled: false
+  run_as: www-data

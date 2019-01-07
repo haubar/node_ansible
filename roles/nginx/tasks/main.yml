@@ -1,0 +1,20 @@
+---
+# update nginx key , install nginx package , setting nginx
+- name: Configure the nginx APT key
+# apt_key: url=http://nginx.org/keys/nginx_signing.key
+
+
+- name: Configure the nginx APT repositories
+
+
+- name: Install the nginx packages
+  apt: name=nginx state=latest
+
+- name: Remove the default configuration
+
+- name: Configure nginx user
+
+- name: Copy fastcgi params
+# copy: src="fastcgi_params" dest="/etc/nginx/fastcgi_params"
+
+- name: "Ensure nginx is {{ nginx.start | ternary('started','stopped') }}"
