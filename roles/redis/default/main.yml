@@ -1,0 +1,5 @@
+---
+# redis
+redis:
+  start: false
+  service_enabled: false

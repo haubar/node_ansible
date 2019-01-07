@@ -8,7 +8,9 @@
 
 
 - name: Install the nginx packages
-  apt: name=nginx state=present
+  apt:
+    name: nginx
+    state: present
 
 - name: Remove the default configuration
 

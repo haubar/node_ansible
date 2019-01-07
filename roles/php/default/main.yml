@@ -1,0 +1,6 @@
+---
+# php7
+php{{ php_version }}:
+  start: false
+  service_enabled: 'no'
+  run_as: www-data

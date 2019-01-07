@@ -1,0 +1,108 @@
+---
+# php setting
+- name: Add PHP {{ php_version }} to source list
+  apt_repository: repo="ppa:ondrej/php" state=present
+
+- name: Install PHP {{ php_version }}
+  apt: name={{item}} state=latest
+  with_items:
+    - php7.0
+    - php7.0-common
+    - php7.0-fpm
+    - php7.0-mysql
+    - php7.0-mcrypt
+    - php7.0-mbstring
+    - php7.0-json
+    - php7.0-curl
+    - php7.0-gd
+    - php7.0-intl
+    - php7.0-cli
+    - php7.0-xml
+    - php7.0-bz2
+    - mcrypt
+    - openssl
+    - php-imagick
+    - php-memcached
+    - php-redis
+    - php-xdebug
+
+- name: Configure PHP {{ php_version }} settings
+  lineinfile:
+    dest: '/etc/php/{{ php_version }}/cli/php.ini'
+    regexp: "^{{ item.param }} ="
+    line: "{{ item.param }} = {{ item.value }}"
+  with_items:
+    - {param: error_reporting,
+       value: "E_ALL"}
+    - {param: display_errors,
+       value: "On"}
+    - {param: post_max_size,
+       value: "128M"}
+    - {param: upload_max_filesize,
+       value: "128M"}
+    - {param: memory_limit,
+       value: "128M"}
+    - {param: max_input_time,
+       value: "30"}
+    - {param: max_execution_time,
+       value: "30"}
+    - {param: short_open_tag,
+       value: "Off"}
+    - {param: date.timezone,
+       value: "Europe/Paris"}
+    - {param: cgi.fix_pathinfo,
+       value: "0"}
+    - {param: phar.readonly,
+       value: "Off"}
+    - {param: expose_php,
+       value: "On"}
+
+
+- name: Copy PHP 7.0 settings for PHP-FPM
+  copy:
+    src: '/etc/php/{{ php_version }}/cli/php.ini'
+    dest: '/etc/php/{{ php_version }}/fpm/php.ini'
+
+- name: Configure PHP 7.0 FPM settings
+  lineinfile:
+    dest: '/etc/php/{{ php_version }}/fpm/pool.d/www.conf'
+    regexp: "^{{ item.param }} ="
+    line: "{{ item.param }} = {{ item.value }}"
+  with_items:
+    - {param: user,
+       value: "{{ php7.run_as }}"}
+    - {param: group,
+       value: "{{ php7.run_as }}"}
+    - {param: listen.owner,
+       value: "{{ php7.run_as }}"}
+    - {param: listen.group,
+       value: "{{ php7.run_as }}"}
+    - {param: listen.mode,
+       value: "0666"}
+
+
+- name: Configure PHP {{ php_version }} xdebug
+  lineinfile:
+    dest: '/etc/php/{{ php_version }}/mods-available/xdebug.ini'
+    regexp: "^{{ item.param }} ="
+    line: "{{ item.param }} = {{ item.value }}"
+    create: 'yes'
+    mode: 0644
+  with_items:
+    - {param: xdebug.remote_enable,
+       value: "0"}
+    - {param: xdebug.remote_handler,
+       value: "dbgp"}
+    - {param: xdebug.remote_port,
+       value: "9000"}
+    - {param: xdebug.remote_host,
+       value: "localhost"}
+    - {param: xdebug.cli_color,
+       value: "1"}
+
+
+- name: "PHP{{php_version}}FPM is {{php7.start | ternary('started','stopped')}}"
+  service:
+    name: "php{{php_version}}-fpm"
+    state: "{{ php7.start | ternary('restarted','stopped') }}"
+    enabled: "{{ php7.service_enabled }}"
