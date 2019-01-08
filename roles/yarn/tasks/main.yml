@@ -1,0 +1,6 @@
+---
+# install extra package
+- name: Install nodejs extra package
+  yarn: name={{item}} state=latest
+  with_items:
+    - strapi
