@@ -2,7 +2,7 @@
 # Install mongodb
 - name: install mongodb repository
   apt_repository:
-    repo: "deb http://repo.mongodb.org/apt/ubuntu {{ ansible_distribution_release }}/mongodb-org/{{ mongodb_version }} multiverse"
+    repo: "deb {{ mongodb_apt_repo }}"
     state: "present"
     update_cache: "yes"
 

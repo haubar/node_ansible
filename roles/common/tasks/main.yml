@@ -1,0 +1,25 @@
+---
+# setting /etc and install base package
+- name: write /etc/hosts
+  template: src=hosts.j2 dest=/etc/hosts
+  when: hostname != ""
+- name: set hostname
+  hostname: name={{hostname}}
+  when: hostname != ""
+# - name: upgrade packages
+#  apt: upgrade=yes
+- name: install base packages
+  apt: pkg={{item}} update_cache=yes
+  with_items:
+      - build-essential
+      - bash-completion
+- name: install extra packages
+  apt: pkg={{item}}
+  with_items: extra_packages
+      - vim
+      - git
+      - bash-completion
+      - wget
+      - curl
+# - name: sudoers fix
+#  template: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'

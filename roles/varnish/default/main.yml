@@ -1,0 +1,5 @@
+---
+# varnish
+varnish:
+  start: false
+  service_enabled: false
