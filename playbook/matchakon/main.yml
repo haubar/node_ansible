@@ -1,9 +1,11 @@
 ---
 # matchakon playbook
-- hosts: matchakon
+- name: Build matchakon basic
+  hosts: matchakon
   become: true
   roles:
     - common
     - node
     - nginx
     - mongodb
+
