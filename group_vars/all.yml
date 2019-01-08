@@ -10,3 +10,5 @@ mongodb_version: 3.6
 redis_version: present
 
 mongodb_db_path: /etc/mongodb/data
+
+tw_timezone: Asia/Taipei
