@@ -1,0 +1,7 @@
+- hosts: matchakon
+  become: True
+  roles:
+    - common
+    - node
+    - nginx
+    - mongodb
