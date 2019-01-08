@@ -1,0 +1,6 @@
+---
+# mongodb
+mongodb:
+  start: false
+  service_enabled: false
+  run_as: mongod

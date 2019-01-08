@@ -3,3 +3,10 @@
 
 php_version: 7.3
 
+node_version: 11
+
+mongodb_version: 3.6
+
+redis_version: present
+
+mongodb_db_path: /etc/mongodb/data

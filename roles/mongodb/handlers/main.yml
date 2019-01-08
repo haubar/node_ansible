@@ -1,0 +1,7 @@
+---
+# start mongodb
+- name: mongodb reload
+  service: name=mongodb{{ mongodb_version }} state=reloaded
+
+- name: mongodb restart
+  service: name=mongodb{{ mongodb_version }} state=restarted
