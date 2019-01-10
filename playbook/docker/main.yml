@@ -1,10 +1,10 @@
 ---
-# matchakon playbook
-- name: Build matchakon basic
+# docker test playbook
+- name: Build Docker Test
   hosts: '{{ inventory }}'
   become: true
   roles:
     - common
     - node
     - nginx
-    - mongodb
+#    - mongodb
