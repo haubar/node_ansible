@@ -18,8 +18,18 @@
   with_items: extra_packages
       - vim
       - git
-      - bash-completion
       - wget
       - curl
+      - zip
+      - unzip
+      - logrotate
+      - python-pip
+      - python-dev
+      - python-software-properties
+      - build-essential
+      - cmake
+      - openssl 
+
+
 # - name: sudoers fix
 #  template: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
