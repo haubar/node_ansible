@@ -1,0 +1,5 @@
+[server]
+local ansible_ssh_host=127.0.0.1 ansible_ssh_port=33288 ansible_user=docker
+
+[server:vars]
+email_receivers=server@test.com
