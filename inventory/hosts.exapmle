@@ -1,0 +1,12 @@
+local ansible_ssh_host=172.17.0.2 ansible_ssh_port=22 ansible_user=docker ansible_ssh_pass=docker
+local2 ansible_ssh_host=127.0.0.1 ansible_ssh_port=22 ansible_user=root
+
+
+[docker]
+local
+
+[server]
+local2
+
+[docker:vars]
+email_receivers=docker@test.com
