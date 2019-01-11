@@ -30,7 +30,3 @@
       - build-essential
       - cmake
       - openssl
-
-
-# - name: sudoers fix
-#  template: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'

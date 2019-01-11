@@ -1,10 +1,11 @@
 ---
 # docker test playbook
 - name: Build Docker Test
-  hosts: '{{ inventory }}'
+  hosts: 'docker'
   become: true
   roles:
     - common
     - node
     - nginx
-#    - mongodb
+    - mongodb
+
