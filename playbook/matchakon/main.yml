@@ -6,5 +6,7 @@
   roles:
     - common
     - node
+    - npm
+    - nvm
     - nginx
     - mongodb
