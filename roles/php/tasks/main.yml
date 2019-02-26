@@ -6,25 +6,24 @@
 - name: Install PHP {{ php_version }}
   apt: name={{item}} state=latest
   with_items:
-    - php7.0
-    - php7.0-common
-    - php7.0-fpm
-    - php7.0-mysql
-    - php7.0-mcrypt
-    - php7.0-mbstring
-    - php7.0-json
-    - php7.0-curl
-    - php7.0-gd
-    - php7.0-intl
-    - php7.0-cli
-    - php7.0-xml
-    - php7.0-bz2
-    - mcrypt
-    - openssl
-    - php-imagick
-    - php-memcached
-    - php-redis
-    - php-xdebug
+    - php7.3
+    - php7.3-common
+    - php7.3-fpm
+    - php7.3-mysql
+    - php7.3-mcrypt
+    - php7.3-mbstring
+    - php7.3-json
+    - php7.3-curl
+    - php7.3-gd
+    - php7.3-intl
+    - php7.3-cli
+    - php7.3-xml
+    - php7.3-bz2
+    - php7.3-openssl
+    - php7.3-imagick
+    - php7.3-memcached
+    - php7.3-redis
+    - php7.3-xdebug
 
 - name: Configure PHP {{ php_version }} settings
   lineinfile:
